@@ -1,12 +1,14 @@
 package main
 
 import (
-	"net/http"
+	"os"
 
 	"github.com/AshkanFarhady/Themis/pkg/handlers"
 )
 
 func main() {
-	http.HandleFunc("/", handlers.Handler)
-	http.ListenAndServe(":8000", nil)
+	ConfigAddress := os.Getenv("config_address")
+
+	handlers.MainHandler(ConfigAddress)
+
 }

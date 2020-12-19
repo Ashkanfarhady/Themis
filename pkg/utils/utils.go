@@ -3,7 +3,6 @@ package utils
 import (
 	"io/ioutil"
 	"log"
-	"os"
 
 	"gopkg.in/yaml.v2"
 )
@@ -12,8 +11,8 @@ type Servers struct {
 	Servers []string `yaml:"servers"`
 }
 
-func GetServerList() []string {
-	data, err := ioutil.ReadFile(os.Getenv("config_address"))
+func GetServerList(config string) []string {
+	data, err := ioutil.ReadFile(config)
 	if err != nil {
 		log.Fatalf("error: %v", err)
 	}

@@ -10,8 +10,9 @@ import (
 	"github.com/AshkanFarhady/Themis/pkg/utils"
 )
 
-func getTarget() (string, string) {
-	servers := utils.GetServerList()
+var configAddress string
+
+func getTarget(servers []string) (string, string) {
 	index := rand.Intn(len(servers))
 	target := servers[index]
 	targetURL, err := url.Parse(target)
@@ -21,10 +22,12 @@ func getTarget() (string, string) {
 	return targetURL.String(), targetURL.Host
 }
 
-func Handler(w http.ResponseWriter, r *http.Request) {
+func LoadHandler(w http.ResponseWriter, r *http.Request) {
+	ServerList := utils.GetServerList(configAddress)
+
 	client := &http.Client{}
 	defer r.Body.Close()
-	targetURL, host := getTarget()
+	targetURL, host := getTarget(ServerList)
 	request, err := http.NewRequest(r.Method, targetURL, r.Body)
 	request.Header = r.Header.Clone()
 	r.Header.Set("host", host)
@@ -41,5 +44,12 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(response.StatusCode)
 	io.Copy(w, response.Body)
+
+}
+
+func MainHandler(config string) {
+	configAddress = config
+	http.HandleFunc("/", LoadHandler)
+	http.ListenAndServe(":8000", nil)
 
 }
