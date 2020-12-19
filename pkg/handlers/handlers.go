@@ -47,9 +47,9 @@ func LoadHandler(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func MainHandler(config string) {
+func MainHandler(config string, port string) {
 	configAddress = config
 	http.HandleFunc("/", LoadHandler)
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(port, nil)
 
 }
