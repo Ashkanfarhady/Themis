@@ -8,6 +8,7 @@ import (
 	"math/rand"
 	"net/http"
 	"net/url"
+	"os"
 
 	"gopkg.in/yaml.v2"
 )
@@ -17,7 +18,10 @@ type Servers struct {
 }
 
 func getServerList() []string {
-	data, err := ioutil.ReadFile("../pkg/config/config.yaml")
+	data, err := ioutil.ReadFile(os.Getenv("config_address"))
+	if err != nil {
+		log.Fatalf("error: %v", err)
+	}
 	servers := Servers{}
 	err = yaml.Unmarshal(data, &servers)
 	if err != nil {
