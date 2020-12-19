@@ -23,4 +23,19 @@
                     __,,aaaadd888888888888888bbaaaa,,__
                   d8888888888888888888888888888888888888b
 ```
-From [wikipeia](https://en.wikipedia.org/wiki/Themis) :
+
+[Themis](https://en.wikipedia.org/wiki/Themis) is the name of a load balancer, written in GoLang. 
+It will forward the requests randomly to your backends
+
+You have to create a config file in yaml format and put your backends addresses there. (Also there is an example in the repository)
+And the address of that config file, shoud be export to environment as a variable.
+
+You have to provide your desired port as an argument
+
+Example:
+```
+./main 8585
+```
+Feature works:
+Right now I have used the simplest algorithm for balancing the load. If yuo wish to contribute, you can implement other algorithms too and make me happy :D
+

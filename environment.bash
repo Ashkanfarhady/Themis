@@ -1,1 +1,1 @@
-export config_address="configExample.yaml"
+export config_address="../configExample.yaml"
