@@ -37,5 +37,5 @@ Example:
 ./main 8585
 ```
 Feature works:<br>
-Right now I have used the simplest algorithm for balancing the load. If yuo wish to contribute, you can implement other algorithms too and make me happy :D
+Right now I have used the simplest algorithm for balancing the load. If you wish to contribute, you can implement other algorithms too, and make me happy :D
 
