@@ -28,7 +28,7 @@
 It will forward the requests randomly to your backends
 
 You have to create a config file in yaml format and put your backends addresses there. (Also there is an example in the repository)
-And the address of that config file, shoud be export to environment as a variable.
+And the address of that config file, shoud be exported to environment as a variable.
 
 You have to provide your desired port as an argument
 
